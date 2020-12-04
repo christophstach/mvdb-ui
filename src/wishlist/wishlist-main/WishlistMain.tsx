@@ -1,11 +1,10 @@
-
-
+import * as React from "react"
 
 function WishlistMain() {
     return (
-        <strong>
+        <div>
             WishlistMain
-        </strong>
+        </div>
     )
 }
 

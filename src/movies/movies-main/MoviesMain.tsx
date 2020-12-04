@@ -1,11 +1,10 @@
-
-
+import * as React from "react"
 
 function MoviesMain() {
     return (
-        <strong>
+        <div>
             MoviesMain
-        </strong>
+        </div>
     )
 }
 

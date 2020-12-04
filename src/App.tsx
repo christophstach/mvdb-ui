@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import * as React from "react"
+import { Box, ChakraProvider, Grid, theme, Container, } from "@chakra-ui/react"
+import { ColorModeSwitcher } from "./ColorModeSwitcher"
+import { BrowserRouter } from "react-router-dom"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = () => (
+    <BrowserRouter>
+      <ChakraProvider theme={theme}>
+        <Box textAlign="center" fontSize="xl">
+          <Grid minH="100vh" p={3}>
+            <ColorModeSwitcher justifySelf="flex-end" />
 
-export default App;
+            <Container>
+              There are many benefits to a joint design and development system. Not only
+              does it bring benefits to the design team, but it also brings benefits to
+              engineering teams. It makes sure that our experiences have a consistent look
+              and feel, not just in our design specs, but in production
+
+              <Box rounded="20px" boxShadow="sm" bg="gray.200">
+                Test
+              </Box>
+            </Container>
+          </Grid>
+        </Box>
+      </ChakraProvider>
+    </BrowserRouter>
+)
