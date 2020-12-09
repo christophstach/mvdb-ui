@@ -1,18 +1,14 @@
-import { Box, ChakraProvider, Grid, theme } from '@chakra-ui/react';
-import { ColorModeSwitcher } from '../../ColorModeSwitcher';
+import { Box, ChakraProvider, Grid, theme, Flex } from '@chakra-ui/react';
 import * as React from 'react';
 import Routes from './Routes';
 
 export default function Layout() {
+    // <ColorModeSwitcher justifySelf="flex-end" />
     return (
         <ChakraProvider theme={theme}>
-            <Box textAlign="center" fontSize="xl">
-                <Grid minH="100vh" p={3}>
-                    <ColorModeSwitcher justifySelf="flex-end" />
-
-                    <Routes />
-                </Grid>
-            </Box>
+            <Flex minH="100vh" p={3} justify="center" align="center">
+                <Routes />
+            </Flex>
         </ChakraProvider>
     );
 }
