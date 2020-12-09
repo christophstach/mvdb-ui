@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, Grid, theme, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Flex, theme } from '@chakra-ui/react';
 import * as React from 'react';
 import Routes from './Routes';
 

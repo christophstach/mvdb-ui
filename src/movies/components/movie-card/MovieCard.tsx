@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Box, Button, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { StarIcon, TimeIcon } from "@chakra-ui/icons";
-import { secondsToHms } from '../../../common/helpers/TimeHelper';
+import { secondsToHm } from '../../../common/helpers/TimeHelper';
 
 interface MovieCardProps {
     title: string;
@@ -12,7 +12,6 @@ interface MovieCardProps {
 }
 
 export default function MovieCard(props: MovieCardProps) {
-    const bg = useColorModeValue("red.500", "red.200");
     const color = useColorModeValue("white", "gray.800");
     const allowedDescriptionLength = 70;
     const description = props.description.length > allowedDescriptionLength ?
@@ -57,7 +56,7 @@ export default function MovieCard(props: MovieCardProps) {
                             <Box flex={1} textColor={color} fontSize="xs" textAlign="left">
                                 <Flex align="center">
                                     <Box><TimeIcon color="gray.300" /></Box>
-                                    <Box ml={2}>{secondsToHms(props.duration)}</Box>
+                                    <Box ml={2}>{secondsToHm(props.duration)}</Box>
                                 </Flex>
                             </Box>
                             <Box>
