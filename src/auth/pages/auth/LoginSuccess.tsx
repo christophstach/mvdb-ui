@@ -25,8 +25,6 @@ export default function LoginSuccess() {
        }, 3000);
     }
 
-
-
     return (
         <div>
             <Heading as="h2">Welcome back {user?.Name}!</Heading>
