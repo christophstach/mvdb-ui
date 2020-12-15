@@ -6,8 +6,8 @@ import { getUser } from '../../../common/helpers/UserHelper';
 
 import { Heading } from '@chakra-ui/react';
 
-export default function Login() {
-    const { userId } = useParams();
+export default function LoginSuccess() {
+    const { token } = useParams();
 
     const [user, setUser] = React.useState<User | null>(null);
 
@@ -17,8 +17,8 @@ export default function Login() {
         });
     }, []);
 
-    if (userId) {
-       localStorage.setItem(config.userIdLocalStorageKey, userId);
+    if (token) {
+       localStorage.setItem(config.userIdLocalStorageKey, token);
 
        setTimeout(() => {
            window.location.href = '/';

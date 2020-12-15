@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import MoviesMain from '../../movies/pages/movies-main/MoviesMain';
 import MoviesSingle from '../../movies/pages/movies-single/MoviesSingle';
 import WishlistMain from '../../wishlist/pages/wishlist-main/WishlistMain';
-import Login from '../../auth/pages/auth/Login';
+import LoginSuccess from '../../auth/pages/auth/LoginSuccess';
 import Logout from '../../auth/pages/auth/Logout';
 
 export default function Routes () {
@@ -19,8 +19,11 @@ export default function Routes () {
             <Route path="/wishlist">
                 <WishlistMain />
             </Route>
-            <Route path="/auth/login/:userId">
-                <Login />
+            <Route path="/auth/login/success/:token">
+                <LoginSuccess />
+            </Route>
+            <Route path="/auth/login/failure">
+                <LoginSuccess />
             </Route>
             <Route path="/auth/logout">
                 <Logout />
