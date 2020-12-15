@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import MoviesMain from '../../movies/pages/movies-main/MoviesMain';
 import MoviesSingle from '../../movies/pages/movies-single/MoviesSingle';
 import WishlistMain from '../../wishlist/pages/wishlist-main/WishlistMain';
+import Login from '../../auth/pages/auth/Login';
+import Logout from '../../auth/pages/auth/Logout';
 
 export default function Routes () {
     return (
@@ -11,11 +13,17 @@ export default function Routes () {
             <Route exact path="/">
                 <MoviesMain />
             </Route>
-            <Route path="/movies/:id">
+            <Route path="/movies/:movieId">
                 <MoviesSingle />
             </Route>
             <Route path="/wishlist">
                 <WishlistMain />
+            </Route>
+            <Route path="/auth/login/:userId">
+                <Login />
+            </Route>
+            <Route path="/auth/logout">
+                <Logout />
             </Route>
         </Switch>
     )

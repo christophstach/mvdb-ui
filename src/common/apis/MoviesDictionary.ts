@@ -1,7 +1,8 @@
 import axios from 'axios';
 import Movie from '../models/Movie';
+import config from '../../config/default';
 
-const endpoint = 'https://dictionary.mvdb.christophstach.me/movies';
+const endpoint = config.moviesDictionaryApiEndpoint;
 
 export async function getMovies() {
     return await axios.get<Movie[]>(`${endpoint}`).then(response => response.data);

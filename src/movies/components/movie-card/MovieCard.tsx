@@ -4,11 +4,14 @@ import { StarIcon, TimeIcon } from "@chakra-ui/icons";
 import { secondsToHm } from '../../../common/helpers/TimeHelper';
 
 interface MovieCardProps {
+    id: string;
     title: string;
     description: string;
     picture: string;
     stars: number;
     duration: number;
+    showAddToWishlist: boolean;
+    onAddToWishlist: (id: string) => void;
 }
 
 export default function MovieCard(props: MovieCardProps) {
@@ -18,6 +21,10 @@ export default function MovieCard(props: MovieCardProps) {
         props.description.substring(0 , allowedDescriptionLength) + "..." :
         props.description;
 
+
+    function handleAddToWishlist() {
+        props.onAddToWishlist(props.id);
+    }
 
     return (
         <Box
@@ -37,9 +44,13 @@ export default function MovieCard(props: MovieCardProps) {
                 backgroundImage="linear-gradient(0deg, #000 20%, transparent)"
             >
                 <Flex direction="column" h="100%">
-                    <Box textAlign="right">
-                        <Button size="sm" fontWeight="normal">Add to Wishlist</Button>
-                    </Box>
+                    {
+                        props.showAddToWishlist && (
+                            <Box textAlign="right">
+                                <Button size="sm" fontWeight="normal" onClick={handleAddToWishlist}>Add to Wishlist</Button>
+                            </Box>
+                        )
+                    }
                     <Box flex={1}>
                     </Box>
                     <Box>
@@ -91,41 +102,3 @@ export default function MovieCard(props: MovieCardProps) {
         </Box>
     );
 }
-
-/*
-const das = (
-    <Box textAlign="right" mb="180px">
-        <Button size="sm" fontWeight="normal">Add to Wishlist</Button>
-    </Box>
-
-<Heading textColor={color} fontSize="s" textAlign="left" mb={2}>{props.title}</Heading>
-<Box
-    textColor={color}
-    fontSize="xs"
-    h="40px"
-    backgroundColor="#ff0000"
-    textAlign="left">{description}</Box>
-
-<Box d="flex" mt="2" alignItems="center">
-    {
-        Array(5)
-            .fill("")
-            .map((_, i) => {
-                    return (
-                        <StarIcon
-                            key={i}
-                            w={2}
-                            h={2}
-                            color={i < Math.floor(props.stars) ? "yellow.500" : "gray.300"}
-                        />
-                    )
-                }
-            )
-    }
-    <Text
-        textColor={color}
-        fontSize="xs">
-        {props.stars.toFixed(1)} of 5
-    </Text>
-</Box>
-)*/

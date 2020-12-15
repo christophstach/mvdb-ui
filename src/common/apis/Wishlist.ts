@@ -1,7 +1,8 @@
 import axios from 'axios';
 import WishlistItem from '../models/WishlistItem';
+import config from '../../config/default';
 
-const endpoint = 'https://wishlist.mvdb.christophstach.me/items';
+const endpoint = config.moviesDictionaryApiEndpoint;
 
 export async function getItems() {
     return await axios.get<WishlistItem[]>(`${endpoint}`).then(response => response.data);
