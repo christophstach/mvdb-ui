@@ -1,11 +1,12 @@
 
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import MoviesMain from '../../movies/pages/movies-main/MoviesMain';
-import MoviesSingle from '../../movies/pages/movies-single/MoviesSingle';
-import WishlistMain from '../../wishlist/pages/wishlist-main/WishlistMain';
-import LoginSuccess from '../../auth/pages/auth/LoginSuccess';
-import Logout from '../../auth/pages/auth/Logout';
+import MoviesMain from '../../../movies/pages/movies-main/MoviesMain';
+import MoviesSingle from '../../../movies/pages/movies-single/MoviesSingle';
+import WishlistMain from '../../../wishlist/pages/wishlist-main/WishlistMain';
+import LoginSuccess from '../../../auth/pages/auth/login-success/LoginSuccess';
+import Logout from '../../../auth/pages/auth/logout/Logout';
+import LoginFailure from '../../../auth/pages/auth/login-failure/LoginFailure';
 
 export default function Routes () {
     return (
@@ -23,7 +24,7 @@ export default function Routes () {
                 <LoginSuccess />
             </Route>
             <Route path="/auth/login/failure">
-                <LoginSuccess />
+                <LoginFailure />
             </Route>
             <Route path="/auth/logout">
                 <Logout />

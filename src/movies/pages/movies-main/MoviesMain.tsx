@@ -1,10 +1,12 @@
 import * as React from "react";
-import { Container, Flex, SimpleGrid } from '@chakra-ui/react';
 import MovieCard from '../../components/movie-card/MovieCard';
 import { useQuery } from 'react-query';
 import { getMovies } from '../../../common/apis/MoviesDictionary';
 import User from '../../../common/models/User';
 import { getUser } from '../../../common/helpers/UserHelper';
+import { Card, Col, Container, Row } from 'react-bootstrap';
+
+import './MoviesMain.scss'
 
 export default function MoviesMain() {
     const moviesQuery = useQuery('movies', getMovies);
@@ -21,28 +23,32 @@ export default function MoviesMain() {
     }
 
     return (
-        <Container w="900px" maxW="900px">
-            <SimpleGrid minChildWidth="250px" spacing={2} >
-                {
-                    moviesQuery.data?.map((movie) => {
-                        return (
-                            <Flex align="center" justify="center">
-                                <MovieCard
-                                    key={movie.id}
-                                    id={movie.id}
-                                    title={movie.title}
-                                    description={movie.description}
-                                    picture={movie.picture}
-                                    stars={movie.stars}
-                                    duration={movie.duration}
-                                    showAddToWishlist={!!user}
-                                    onAddToWishlist={handleAddToWishlist}
-                                />
-                            </Flex>
-                        )
-                    })
-                }
-            </SimpleGrid>
+        <Container className="movies-main">
+            <Card>
+                <Card.Body>
+                    <Row>
+                        {
+                            moviesQuery.data?.map((movie) => {
+                                return (
+                                    <Col>
+                                        <MovieCard
+                                            key={movie.id}
+                                            id={movie.id}
+                                            title={movie.title}
+                                            description={movie.description}
+                                            picture={movie.picture}
+                                            stars={movie.stars}
+                                            duration={movie.duration}
+                                            showAddToWishlist={!!user}
+                                            onAddToWishlist={handleAddToWishlist}
+                                        />
+                                    </Col>
+                                )
+                            })
+                        }
+                    </Row>
+                </Card.Body>
+            </Card>
         </Container>
     );
 }

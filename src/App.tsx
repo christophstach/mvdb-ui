@@ -1,16 +1,17 @@
 import * as React from "react"
 import { BrowserRouter } from "react-router-dom"
-import Layout from './common/components/Layout';
-import { QueryCache, ReactQueryCacheProvider } from 'react-query';
+import Layout from './common/components/layout/Layout';
+import { QueryClient, QueryClientProvider, } from 'react-query'
+import "./App.scss";
 
-const queryCache = new QueryCache();
+const queryClient = new QueryClient()
 
-export function App() {
+export default function App() {
     return (
-        <ReactQueryCacheProvider queryCache={queryCache}>
+        <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Layout/>
             </BrowserRouter>
-        </ReactQueryCacheProvider>
+        </QueryClientProvider>
     );
 }
