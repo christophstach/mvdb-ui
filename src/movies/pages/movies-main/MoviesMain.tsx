@@ -40,6 +40,7 @@ export default function MoviesMain() {
                                             stars={movie.stars}
                                             duration={movie.duration}
                                             showAddToWishlist={!!user}
+                                            isPlaylist={Math.random() > 0.5}
                                             onAddToWishlist={handleAddToWishlist}
                                         />
                                     </Col>

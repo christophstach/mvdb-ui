@@ -1,4 +1,17 @@
 .movie-card {
+  // https://www.materialui.co/colors
+  .yellow {
+    color: #FFD600;
+  }
+
+  .gray {
+    color: #757575;
+  }
+
+  .red {
+    color: #e53935;
+  }
+
   width: 250px;
   height: 370px;
 
@@ -22,6 +35,11 @@
     .header {
       padding: 1rem;
       text-align: right;
+
+      .btn {
+        transition: box-shadow .4s cubic-bezier(.25, .8, .25, 1), transform .4s cubic-bezier(.25, .8, .25, 1);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26)
+      }
     }
 
     .spacer {
@@ -48,14 +66,7 @@
           margin-left: auto;
 
 
-          // https://www.materialui.co/colors
-          .yellow {
-            color: #FFD600;
-          }
 
-          .gray {
-            color: #757575;
-          }
         }
 
         .stars-text {

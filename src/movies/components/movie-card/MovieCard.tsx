@@ -4,11 +4,11 @@ import { Button } from 'react-bootstrap';
 import { secondsToHm } from '../../../common/helpers/TimeHelper';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faClock, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-library.add(faClock, faStar);
+library.add(faClock, faStar, faHeart);
 
 interface MovieCardProps {
     id: string;
@@ -18,6 +18,7 @@ interface MovieCardProps {
     stars: number;
     duration: number;
     showAddToWishlist: boolean;
+    isPlaylist: boolean;
     onAddToWishlist: (id: string) => void;
 }
 
@@ -36,7 +37,9 @@ export default function MovieCard(props: MovieCardProps) {
         <div className="movie-card" style={{backgroundImage: `url(${props.picture})`}}>
             <div className="gradient">
                 <div className="header">
-                    <Button variant="light" size="sm" onClick={handleAddToWishlist}>To Wishlist</Button>
+                    <Button variant="light" size="sm" onClick={handleAddToWishlist}>
+                        <FontAwesomeIcon className={ props.isPlaylist? "red" : "gray" } icon={["fas", "heart"]} />
+                    </Button>
                 </div>
                 <div className="spacer"/>
                 <div className="body">
