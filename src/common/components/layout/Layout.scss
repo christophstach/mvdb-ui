@@ -1,0 +1,14 @@
+.layout {
+  .layout-header {
+    min-height: 280px;
+    background-image: url("../../../assets/images/pexels-pixabay-257385.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
+
+  .layout-body {
+    margin-top: -50px;
+  }
+}

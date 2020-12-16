@@ -1,0 +1,67 @@
+.movie-card {
+  width: 250px;
+  height: 370px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  overflow: hidden;
+  box-shadow: 10px 10px 30px;
+
+  margin: 1.0rem auto;
+
+  .gradient {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    background-image: linear-gradient(0deg, #000 20%, transparent);
+
+    .header {
+      padding: 1rem;
+      text-align: right;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .body {
+      padding: 1rem;
+      color: #fff;
+      font-size: 80%;
+
+      .body-bottom {
+        display: flex;
+
+        .duration-icon {
+          margin-right: 0.5rem;
+        }
+
+        .duration-text {
+
+        }
+
+        .stars {
+          margin-left: auto;
+
+
+          // https://www.materialui.co/colors
+          .yellow {
+            color: #FFD600;
+          }
+
+          .gray {
+            color: #757575;
+          }
+        }
+
+        .stars-text {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+}
