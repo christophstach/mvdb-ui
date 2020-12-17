@@ -2,24 +2,36 @@ import axios from 'axios';
 import WishlistItem from '../models/WishlistItem';
 import config from '../../config/default';
 
-const endpoint = config.moviesDictionaryApiEndpoint;
+const endpoint = config.wishlistApiEndpoint;
 
-export async function getItems() {
-    return await axios.get<WishlistItem[]>(`${endpoint}`).then(response => response.data);
+export async function getWishlistItems() {
+    const token = localStorage.getItem(config.tokenLocalStorageKey);
+
+    return await axios.get<WishlistItem[]>(`${endpoint}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response => response.data);
 }
 
-export async function getItem(id: string) {
-    return await axios.get<WishlistItem>(`${endpoint}/${id}`).then(response => response.data);
+
+export async function postWishlistItem(item: Partial<WishlistItem>) {
+    const token = localStorage.getItem(config.tokenLocalStorageKey);
+
+    return await axios.post<WishlistItem>(`${endpoint}`, item, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response => response.data);
 }
 
-export async function postItem(item: Partial<WishlistItem>) {
-    return await axios.post<WishlistItem>(`${endpoint}`, item).then(response => response.data);
-}
 
-export async function putItem(id: string, item: Partial<WishlistItem>) {
-    return await axios.put<WishlistItem>(`${endpoint}/${id}`, item).then(response => response.data);
-}
 
-export async function deleteItem(id: string) {
-    return await axios.delete<WishlistItem>(`${endpoint}/${id}`).then(response => response.data);
+export async function deleteWishlistItem(id: string) {
+    const token = localStorage.getItem(config.tokenLocalStorageKey);
+    return await axios.delete<WishlistItem>(`${endpoint}/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response => response.data);
 }

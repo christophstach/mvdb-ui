@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Routes from '../routes/Routes';
 import MainNavigation from '../main-navigation/MainNavigation';

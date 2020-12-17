@@ -23,7 +23,7 @@ export default function LoginSuccess() {
     }, []);
 
     if (token) {
-       localStorage.setItem(config.userIdLocalStorageKey, token);
+       localStorage.setItem(config.tokenLocalStorageKey, token);
 
        setTimeout(() => {
            window.location.href = '/';

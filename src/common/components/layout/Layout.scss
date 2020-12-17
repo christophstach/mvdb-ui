@@ -11,4 +11,21 @@
   .layout-body {
     margin-top: -50px;
   }
+
+  .toasts {
+    position: sticky;
+    bottom: 1rem;
+    left: calc(100% - 350px - 1rem);
+    width: 350px;
+
+    .success-toast {
+      .toast-body {
+        border-left: 3px solid green;
+      }
+    }
+  }
+
+  min-height: 100vh;
 }
+
+

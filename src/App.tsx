@@ -4,14 +4,18 @@ import Layout from './common/components/layout/Layout';
 import { QueryClient, QueryClientProvider, } from 'react-query'
 import "./App.scss";
 
-const queryClient = new QueryClient()
+import { ToastProvider } from 'react-toast-notifications';
+
+const queryClient = new QueryClient();
 
 export default function App() {
     return (
-        <QueryClientProvider client={queryClient}>
-            <BrowserRouter>
-                <Layout/>
-            </BrowserRouter>
-        </QueryClientProvider>
+        <ToastProvider placement="bottom-right" autoDismiss={true}>
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                    <Layout/>
+                </BrowserRouter>
+            </QueryClientProvider>
+        </ToastProvider>
     );
 }

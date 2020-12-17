@@ -6,7 +6,7 @@ import './LoginFailure.scss';
 
 
 export default function LoginFailure() {
-    localStorage.removeItem(config.userIdLocalStorageKey);
+    localStorage.removeItem(config.tokenLocalStorageKey);
 
     setTimeout(() => {
         // window.location.href = '/';

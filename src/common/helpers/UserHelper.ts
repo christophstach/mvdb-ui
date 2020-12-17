@@ -3,13 +3,13 @@ import { getUserInformation } from '../apis/Auth';
 import config from '../../config/default';
 
 export async function getUser(): Promise<User | null> {
-    const userId = localStorage.getItem(config.userIdLocalStorageKey);
+    const token = localStorage.getItem(config.tokenLocalStorageKey);
 
-    if(userId) {
+    if(token) {
         try {
-            return await getUserInformation(userId);
+            return await getUserInformation(token);
         } catch (e) {
-            localStorage.removeItem(config.userIdLocalStorageKey);
+            localStorage.removeItem(config.tokenLocalStorageKey);
         }
     }
 

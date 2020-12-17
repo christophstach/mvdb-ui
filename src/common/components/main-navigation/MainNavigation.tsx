@@ -42,7 +42,7 @@ export default function MainNavigation(props: any) {
                                 <Nav.Link>Logout</Nav.Link>
                             </LinkContainer>
                         ) : (
-                            <LinkContainer to="/auth/login/success/123">
+                            <LinkContainer to="/auth/login/success/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkNocmlzdG9waCBTdGFjaCIsImlkIjoiMTIzIiwiaWF0IjoxNTE2MjM5MDIyfQ.ELZrJLP7uCaOv2HosI2M395kPfAhoVtxJC6lGH7r2Dg">
                                 <Nav.Link>Login</Nav.Link>
                             </LinkContainer>
                         )

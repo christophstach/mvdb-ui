@@ -17,7 +17,7 @@ export default function Logout() {
     }, []);
 
     setTimeout(() => {
-        localStorage.removeItem(config.userIdLocalStorageKey);
+        localStorage.removeItem(config.tokenLocalStorageKey);
         window.location.href = '/';
     }, 3000);
 
