@@ -16,7 +16,7 @@ library.add(faTrash);
 export default function WishlistMain() {
     const wishlistItemsQuery = useQuery('wishlistItems', getWishlistItems);
     const queryClient = useQueryClient();
-    const [addToast] = useToasts();
+    const {addToast} = useToasts();
 
     const deleteWishlistItemMutation = useMutation<WishlistItem,
         any,
