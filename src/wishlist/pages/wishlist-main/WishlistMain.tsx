@@ -35,41 +35,48 @@ export default function WishlistMain() {
         }
     });
 
+    function handleRemoveFromWishlist(id: string) {
+        deleteWishlistItemMutation.mutate(id);
+    }
+
     return (
         <Container className="wishlist-main">
             <Card>
                 <Table striped hover>
                     <thead>
                     <tr>
-                        <th style={{width:'100%'}}>Title</th>
-                        <th> </th>
+                        <th style={{width: '100%'}}>Title</th>
+                        <th></th>
                     </tr>
 
                     </thead>
                     <tbody>
-                        {
-                            wishlistItemsQuery.data && wishlistItemsQuery.data.length > 0 ? wishlistItemsQuery.data?.map((item) => {
-                                return (
-                                    <tr>
-                                        <td>{item.title}</td>
-                                        <td style={{whiteSpace: 'nowrap'}}>
-                                            <LinkContainer to={`/movies/${item.referenceId}`}>
-                                                <Button variant="primary" size="sm">Goto movie</Button>
-                                            </LinkContainer>
-                                        </td>
-                                        <td>
-                                            <Button variant="danger" size="sm">
-                                                <FontAwesomeIcon icon={["fas", "trash"]} />
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                );
-                            }) : (
+                    {
+                        wishlistItemsQuery.data && wishlistItemsQuery.data.length > 0 ? wishlistItemsQuery.data?.map((item) => {
+                            return (
                                 <tr>
-                                    <td colSpan={3}>You don't have items on your wishlist</td>
+                                    <td>{item.title}</td>
+                                    <td style={{whiteSpace: 'nowrap'}}>
+                                        <LinkContainer to={`/movies/${item.referenceId}`}>
+                                            <Button variant="primary" size="sm">Goto movie</Button>
+                                        </LinkContainer>
+                                    </td>
+                                    <td>
+                                        <Button
+                                            variant="danger"
+                                            size="sm"
+                                            onClick={() => handleRemoveFromWishlist(item.id)}>
+                                            <FontAwesomeIcon icon={["fas", "trash"]}/>
+                                        </Button>
+                                    </td>
                                 </tr>
-                            )
-                        }
+                            );
+                        }) : (
+                            <tr>
+                                <td colSpan={3}>You don't have items on your wishlist</td>
+                            </tr>
+                        )
+                    }
                     </tbody>
                 </Table>
             </Card>
