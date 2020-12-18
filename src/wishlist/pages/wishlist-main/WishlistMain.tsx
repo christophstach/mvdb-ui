@@ -1,84 +1,84 @@
 import * as React from "react";
-import { Button, Card, Container, Table } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row, Spinner, Table } from 'react-bootstrap';
 
 import './WishlistMain.scss'
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { deleteWishlistItem, getWishlistItems } from '../../../common/apis/Wishlist';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import WishlistItem from '../../../common/models/WishlistItem';
-import { useToasts } from 'react-toast-notifications';
+import useWishlistItemService from '../../../common/services/wishlist-items.service';
 
 library.add(faTrash);
 
 export default function WishlistMain() {
-    const wishlistItemsQuery = useQuery('wishlistItems', getWishlistItems);
-    const queryClient = useQueryClient();
-    const {addToast} = useToasts();
-
-    const deleteWishlistItemMutation = useMutation<WishlistItem,
-        any,
-        any,
-        any>((id: string) => {
-        return deleteWishlistItem(id);
-    }, {
-        onSettled(item) {
-            queryClient.invalidateQueries(['wishlistItems']);
-            queryClient.invalidateQueries(['movies']);
-
-            addToast('Removed movie from wishlist', {
-                appearance: 'success',
-                autoDismiss: true,
-            });
-        }
-    });
+    const wishlistItemService = useWishlistItemService();
 
     function handleRemoveFromWishlist(id: string) {
-        deleteWishlistItemMutation.mutate(id);
+        const item = wishlistItemService.manyQuery.data?.find((item) => item.referenceId === id);
+
+        if (item) {
+            wishlistItemService.deleteMutation.mutate(item.id);
+        }
     }
 
     return (
         <Container className="wishlist-main">
             <Card>
-                <Table striped hover>
-                    <thead>
-                    <tr>
-                        <th style={{width: '100%'}}>Title</th>
-                        <th></th>
-                    </tr>
-
-                    </thead>
-                    <tbody>
-                    {
-                        wishlistItemsQuery.data && wishlistItemsQuery.data.length > 0 ? wishlistItemsQuery.data?.map((item) => {
-                            return (
-                                <tr>
-                                    <td>{item.title}</td>
-                                    <td style={{whiteSpace: 'nowrap'}}>
-                                        <LinkContainer to={`/movies/${item.referenceId}`}>
-                                            <Button variant="primary" size="sm">Goto movie</Button>
-                                        </LinkContainer>
-                                    </td>
-                                    <td>
-                                        <Button
-                                            variant="danger"
-                                            size="sm"
-                                            onClick={() => handleRemoveFromWishlist(item.id)}>
-                                            <FontAwesomeIcon icon={["fas", "trash"]}/>
-                                        </Button>
-                                    </td>
-                                </tr>
-                            );
-                        }) : (
+                {
+                    wishlistItemService.manyQuery.isLoading ? (
+                        <Card.Body>
+                            <Row>
+                                <Col style={{textAlign: 'center', padding: '1rem'}}>
+                                    <Spinner animation="grow" variant="primary" />
+                                    <Spinner animation="grow" variant="secondary" />
+                                    <Spinner animation="grow" variant="success" />
+                                    <Spinner animation="grow" variant="danger" />
+                                    <Spinner animation="grow" variant="warning" />
+                                    <Spinner animation="grow" variant="info" />
+                                    <Spinner animation="grow" variant="dark" />
+                                </Col>
+                            </Row>
+                        </Card.Body>
+                    ): (
+                        <Table striped hover>
+                            <thead>
                             <tr>
-                                <td colSpan={3}>You don't have items on your wishlist</td>
+                                <th style={{width: '100%'}}>Title</th>
+                                <th> </th>
                             </tr>
-                        )
-                    }
-                    </tbody>
-                </Table>
+
+                            </thead>
+                            <tbody>
+                            {
+                                wishlistItemService.manyQuery.data && wishlistItemService.manyQuery.data.length > 0 ? wishlistItemService.manyQuery.data?.map((item) => {
+                                    return (
+                                        <tr>
+                                            <td>{item.title}</td>
+                                            <td style={{whiteSpace: 'nowrap'}}>
+                                                <LinkContainer to={`/movies/${item.referenceId}`}>
+                                                    <Button variant="primary" size="sm">Goto movie</Button>
+                                                </LinkContainer>
+                                            </td>
+                                            <td>
+                                                <Button
+                                                    variant="danger"
+                                                    size="sm"
+                                                    onClick={() => handleRemoveFromWishlist(item.id)}>
+                                                    <FontAwesomeIcon icon={["fas", "trash"]}/>
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    );
+                                }) : (
+                                    <tr>
+                                        <td colSpan={3}>You don't have items on your wishlist</td>
+                                    </tr>
+                                )
+                            }
+                            </tbody>
+                        </Table>
+                    )
+                }
             </Card>
         </Container>
     );
