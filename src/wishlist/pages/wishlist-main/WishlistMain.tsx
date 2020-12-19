@@ -14,7 +14,7 @@ export default function WishlistMain() {
     const wishlistItemService = useWishlistItemService();
 
     function handleRemoveFromWishlist(id: string) {
-        const item = wishlistItemService.manyQuery.data?.find((item) => item.referenceId === id);
+        const item = wishlistItemService.manyQuery.data?.find((item) => item.id === id);
 
         if (item) {
             wishlistItemService.deleteMutation.mutate(item.id);
