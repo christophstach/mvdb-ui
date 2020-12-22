@@ -30,7 +30,7 @@ export default function MainNavigation(props: any) {
                     </LinkContainer>
 
                     {
-                        user && (
+                        user ? (
                             <>
                                 <LinkContainer to="/wishlist">
                                     <Nav.Link>Wishlist</Nav.Link>
@@ -39,12 +39,16 @@ export default function MainNavigation(props: any) {
                                     <Nav.Link>Logout</Nav.Link>
                                 </LinkContainer>
                             </>
+                        ) : (
+                            <Nav.Link href={config.authUrl}>
+                                Login
+                            </Nav.Link>
                         )
                     }
                 </Nav>
                 <Nav>
                     {
-                        user ? (
+                        user && (
                             <>
 
                                 <Nav.Link className="ml-auto d-flex align-items-center">
@@ -61,10 +65,6 @@ export default function MainNavigation(props: any) {
                                     </div>
                                 </Nav.Link>
                             </>
-                        ) : (
-                            <Nav.Link href={config.authUrl}>
-                                Login
-                            </Nav.Link>
                         )
                     }
                 </Nav>
