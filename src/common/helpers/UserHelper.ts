@@ -9,8 +9,13 @@ export async function getUser(): Promise<User | null> {
 
     if (token) {
         try {
-            const user: User = jwtDecode(token);
-            return user;
+            const user: User & { Avatar_Url: string } = jwtDecode(token);
+            const picture = user.Avatar_Url ? user.Avatar_Url : user.Picture;
+
+            return {
+                ...user,
+                Picture: picture
+            };
         } catch (e) {
             localStorage.removeItem(config.tokenLocalStorageKey);
         }

@@ -7,12 +7,12 @@ export default function useWishlistItemService() {
     const queryClient = useQueryClient();
     const {addToast} = useToasts();
 
-    const manyQuery = useQuery<WishlistItem[]>('wishlistItems', getWishlistItems);
+    const manyQuery = useQuery<WishlistItem[] | null>('wishlistItems', getWishlistItems);
 
-    const createMutation = useMutation<WishlistItem,
+    const createMutation = useMutation<WishlistItem | null,
         any,
         any,
-        any>((item: Partial<WishlistItem>) => {
+        any>((item) => {
         return postWishlistItem(item);
     }, {
         onSettled(item) {

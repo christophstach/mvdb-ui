@@ -9,7 +9,7 @@ export default function LoginFailure() {
     localStorage.removeItem(config.tokenLocalStorageKey);
 
     setTimeout(() => {
-        // window.location.href = '/';
+        window.location.href = '/';
     }, 3000);
 
     return (

@@ -7,28 +7,37 @@ const endpoint = config.wishlistApiEndpoint;
 export async function getWishlistItems() {
     const token = localStorage.getItem(config.tokenLocalStorageKey);
 
-    return await axios.get<WishlistItem[]>(`${endpoint}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(response => response.data);
+    if(token) {
+        return await axios.get<WishlistItem[]>(`${endpoint}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(response => response.data);
+    } else {
+        return null;
+    }
 }
 
 
 export async function postWishlistItem(item: Partial<WishlistItem>) {
     const token = localStorage.getItem(config.tokenLocalStorageKey);
 
-    return await axios.post<WishlistItem>(`${endpoint}`, item, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(response => response.data);
+    if( token) {
+        return await axios.post<WishlistItem>(`${endpoint}`, item, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(response => response.data);
+    } else {
+        return null;
+    }
 }
 
 
 
 export async function deleteWishlistItem(id: string) {
     const token = localStorage.getItem(config.tokenLocalStorageKey);
+
     return await axios.delete<WishlistItem>(`${endpoint}/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
