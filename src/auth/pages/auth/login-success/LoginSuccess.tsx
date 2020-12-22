@@ -13,7 +13,6 @@ interface RouteParams {
 
 export default function LoginSuccess() {
     const { token } = useParams<RouteParams>();
-
     const [user, setUser] = React.useState<User | null>(null);
 
     React.useEffect(() => {

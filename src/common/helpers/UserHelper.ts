@@ -1,13 +1,16 @@
 import User from '../models/User';
-import { getUserInformation } from '../apis/Auth';
+
 import config from '../../config/default';
+import jwtDecode from 'jwt-decode';
+
 
 export async function getUser(): Promise<User | null> {
     const token = localStorage.getItem(config.tokenLocalStorageKey);
 
-    if(token) {
+    if (token) {
         try {
-            return await getUserInformation(token);
+            const user: User = jwtDecode(token);
+            return user;
         } catch (e) {
             localStorage.removeItem(config.tokenLocalStorageKey);
         }
