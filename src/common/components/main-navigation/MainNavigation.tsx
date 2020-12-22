@@ -31,9 +31,14 @@ export default function MainNavigation(props: any) {
 
                     {
                         user && (
-                            <LinkContainer to="/wishlist">
-                                <Nav.Link>Wishlist</Nav.Link>
-                            </LinkContainer>
+                            <>
+                                <LinkContainer to="/wishlist">
+                                    <Nav.Link>Wishlist</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to="/auth/logout">
+                                    <Nav.Link>Logout</Nav.Link>
+                                </LinkContainer>
+                            </>
                         )
                     }
                 </Nav>
@@ -41,20 +46,27 @@ export default function MainNavigation(props: any) {
                     {
                         user ? (
                             <>
-                                <LinkContainer to="/auth/logout">
-                                    <Nav.Link>Logout</Nav.Link>
-                                </LinkContainer>
-                                <Nav.Link className="ml-auto">
-                                    {user.Name}
+
+                                <Nav.Link className="ml-auto d-flex align-items-center">
+                                    <div className="">
+                                        {user.Name}
+                                    </div>
+                                    <div>
+                                        <Image
+                                            height={32}
+                                            width={32}
+                                            className="ml-2 profile-picture"
+                                            src="https://lh3.googleusercontent.com/a-/AOh14GhutiSluwhehIu3xQaYEpceNP9Qv9FqjSkmTedPFpw=s96-c"
+                                            roundedCircle/>
+                                    </div>
                                 </Nav.Link>
-                                <Image height={40} src="https://lh3.googleusercontent.com/a-/AOh14GhutiSluwhehIu3xQaYEpceNP9Qv9FqjSkmTedPFpw=s96-c" roundedCircle />
                             </>
                         ) : (
                             <Nav.Link href={config.authUrl}>
                                 Login
                             </Nav.Link>
                         )
-                    }   
+                    }
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
